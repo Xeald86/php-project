@@ -1,0 +1,42 @@
+body, html {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	font-family: Georgia;
+	color: #111;
+	line-height: 20px;
+	background: #aaa;
+}
+
+#loginContainer {
+	border: 1px solid #555;
+	border-top: 0px;
+	margin: 0 auto;
+	width: 800px;
+	background: #fff;
+	margin-bottom: 20px;
+}
+
+	#loginFieldset {
+		width: 300px;
+		margin-left: 50px;
+		float: left;
+	}
+	
+	#createFieldset {
+		width: 300px;
+		margin-left: 50px;
+		float: left;
+	}
+
+#mainContainer {
+	margin: 0 auto;
+	border: 1px solid #555;
+	padding: 10px;
+	background: #fff;
+	width: 780px;
+}
+
+.clear {
+	clear: both;
+}
