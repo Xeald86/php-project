@@ -45,8 +45,7 @@ class StartView {
 	 		- <a href='?inspectquizzes'>Inspect finished Quizzes (no finished quizzes)</a>
 	 		</p>
  		";
-		
-		
+
 		return $html;
 	 }
 }

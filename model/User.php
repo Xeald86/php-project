@@ -14,7 +14,7 @@ class User {
 	private $userLevel = 0;
 
 	/**
-	 * @return string of userName
+	 * @return String of userName
 	 */
 	public function getUserName() {
 		return $this->userName;
@@ -35,15 +35,15 @@ class User {
 	}
 	
 	/**
-	 * @param string $username
+	 * @param String $username
 	 * TODO: No Securety At ALL!!!! ALSO USE TRY WHEN CALLING FOR THIS
 	 */
-	public function setUserName($username) {
+	public function setUserName($username) {		
 		$this->userName = $username;
 	}
 	
 	/**
-	 * @param string $password
+	 * @param String $password
 	 * TODO: No Securety At ALL!!!! ALSO USE TRY WHEN CALLING FOR THIS
 	 */
 	public function setUserPass($password) {

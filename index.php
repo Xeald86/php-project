@@ -4,30 +4,29 @@ require_once("view/LoginFormView.php");
 require_once("view/DefaultPageView.php");
 require_once("controller/AuthController.php");
 require_once("controller/PageController.php");
-require_once("model/User.php"); //TODO: remove
+require_once("controller/RegController.php");
+require_once("common/Filter.php");
+
 
 session_start();
 
-//Fejk session TODO: Remove
-$fakeUser = new \model\User();
-$fakeUser->setUserName("Xeald");
-$fakeUser->setUserPass("pepsi123");
-$fakeUser->setUserLevel(2);
-$_SESSION["project::model::user"] = $fakeUser;
-
-
 $pageView = new \view\DefaultPageView();
-$loginFormView =  new \view\LoginFormView();
+$loginFormView = new \view\loginFormView();
 $authController = new \controller\AuthController($loginFormView);
+$regController = new \controller\RegController($loginFormView);
 
-/* Gets an empty user-object or from session */
+// Create user process
+$regController->createUserIfRequested();
+
+// Check if a logout is wanted, if so, do it
+$authController->logoutUser();
+
+// Gets an empty user-object, logged in user or from session 
 $user = $authController->getUser();
 
-//TODO: Här måste en hel del göras för inloggning av användare.
-
-/* Authenticates and gets html for login-part depending on result */
+// Authenticates and gets html for login-part depending on result
 $authHtml = $authController->authenticateUser();
-
+$authController->saveUser();
 
 // If user is Online, start creating body
 if($user->isAccepted()) {
@@ -38,5 +37,5 @@ else
 	$bodyHtml = $pageView->getOfflineHTML();
 
 
-/* merge html */
+// Merge html
 echo $pageView->getPage("PHP Project", $authHtml, $bodyHtml);

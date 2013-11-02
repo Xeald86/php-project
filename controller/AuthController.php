@@ -5,7 +5,7 @@ namespace controller;
 class AuthController {
 	
 	/**
-	 * @var \view\FormView $formView
+	 * @var \view\LoginFormView $loginFormView
 	 * @var \model\User $user
 	 */
 	private $loginFormView;
@@ -24,13 +24,16 @@ class AuthController {
 	 * @return User $user
 	 */
 	public function getUser() {
-		if($this->loginFormView->sessionUserExist())
-			$user = $this->loginFormView->getSessionedUser();
-		else
-			$user = $this->loginFormView->getEmptyUser();
-		
+		if($this->loginFormView->userWantsIn())
+			$user = $this->loginFormView->getPostedUser();
+		else {
+			if($this->loginFormView->sessionUserExist())
+				$user = $this->loginFormView->getSessionedUser();
+			else
+				$user = new \model\User();
+		}
 		$this->user = $user;
-		
+
 		return $user;
 	}
 	
@@ -43,7 +46,16 @@ class AuthController {
 			$html = $this->loginFormView->getOnlineHTML($this->user);
 		else
 			$html = $this->loginFormView->getOfflineHTML();
-		
+
 		return $html;
+	}
+
+	public function saveUser() {
+		$this->loginFormView->SaveUserInSession($this->user);
+	}
+	
+	public function logoutUser() {
+		if($this->loginFormView->userWantsOut())
+			$this->loginFormView->removeUserSession();
 	}
 }

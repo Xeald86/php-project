@@ -21,12 +21,28 @@ body, html {
 		width: 300px;
 		margin-left: 50px;
 		float: left;
+		margin-bottom: 10px;
+		margin-top: 10px;
 	}
 	
-	#createFieldset {
+	#newUserFieldset {
 		width: 300px;
-		margin-left: 50px;
-		float: left;
+		margin-right: 50px;
+		float: right;
+		margin-bottom: 10px;
+		margin-top: 10px;
+	}
+	
+	#loginMessage {
+		color: #ff4444;
+	}
+	
+	#newUserMessage {
+		color: #ff4444;
+	}
+	
+	#newUserMessage span {
+		color: #007700;
 	}
 
 #mainContainer {
@@ -37,6 +53,41 @@ body, html {
 	width: 780px;
 }
 
+	#newQuizContainer {
+		width: 480px;
+		float: left;
+		padding: 10px;
+		border: 1px solid #555;
+	}
+		#newQuizTitleInput {
+			width: 300px;
+		}
+		
+		#newQuizHeadInput {
+			width: 450px;
+			height: 150px;
+			margin: 0px;
+			padding: 10px;
+		}
+		
+		#newQuizQuestionContainer {
+			border: 1px solid #999;
+			background: #bdd6db;
+			padding: 5px;
+			margin-bottom: 10px;
+		}
+	
+	#addQuestionContainer {
+		width: 230px;
+		float: right;
+		padding: 10px;
+		border: 1px solid #555;
+	}
+
 .clear {
 	clear: both;
+}
+
+.errorMsg {
+	color: #ff0000;
 }

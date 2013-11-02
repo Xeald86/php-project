@@ -11,7 +11,7 @@ class DefaultPageView {
 	 */
 	public function getPage($title, $loginBody, $mainBody) {
 		
-		if(strlen($mainBody) < 5) //TODO: might not be the best way
+		if(strlen($mainBody) < 5)
 			$mainBody = "You are currently offline. Please log in to use this application!";
 		
 		return "
@@ -46,9 +46,18 @@ class DefaultPageView {
 	 * TODO: Finish this, right now we are att start oage all the time
 	 */
 	public function getPageLocation() {
-		$location = "start";
+		$location = \common\Filter::sanitize($_SERVER['QUERY_STRING']);
+		if($location == "login" or $location == "")
+			$location = "start";
 		
 		return $location;
+	}
+	
+	/**
+	 * @return String
+	 */
+	public function somethingWentWrong() {
+		return "Something went wrong. Please go to our <a href='index.php'>start page</a>";
 	}
 
 }

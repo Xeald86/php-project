@@ -3,6 +3,7 @@
 namespace controller;
 
 require_once("view/StartView.php");
+require_once("controller/QuizCreationController.php");
 
 class PageController {
 	
@@ -37,14 +38,22 @@ class PageController {
 		
 		//Gets location to get correct html-body
 		$location = $this->locateWhereWeAre();
-		
+
+		//TODO: Well the cases are plenty, is this the rigth way to go?
 		switch ($location) {
 		    case "start":
 				$view = new \view\StartView($this->user);
 				$html = $view->getHTML();
 		        break;
+			case "newquiz":
+			case "addOption":
+			case "addQuestion":
+				$controller = new \controller\QuizCreationController($this->user);
+				$controller->doNewQuiz();
+				$html = $controller->getHTML();
+		        break;
 			default:
-				$html = "Something went wrong. Please go to our <a href='index.php'>start page</a>";
+				$html = $this->pageView->somethingWentWrong();
 				break;
 		}
 		
